@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/navigation/routes.dart';
+import 'package:restaurant_app/screen/home_screen.dart';
 import 'util.dart';
 import 'theme.dart';
 
@@ -11,8 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme =
-        createTextTheme(context, "Montserrat", "Montserrat Alternates");
+    TextTheme textTheme = createTextTheme(
+      context,
+      "Montserrat",
+      "Montserrat Alternates",
+    );
+
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return MaterialApp(
@@ -20,7 +26,11 @@ class MyApp extends StatelessWidget {
       theme: theme.light(),
       darkTheme: theme.dark(),
       themeMode: ThemeMode.system,
-      home: const SizedBox(),
+      initialRoute: Routes.home.name,
+      routes: {
+        Routes.home.name: (context) => const HomeScreen(),
+        Routes.detail.name: (context) => const HomeScreen(),
+      },
     );
   }
 }
