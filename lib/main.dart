@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_app/navigation/routes.dart';
+import 'package:restaurant_app/provider/restaurant_detail_provider.dart';
+import 'package:restaurant_app/provider/restaurant_list_provider.dart';
 import 'package:restaurant_app/screen/home_screen.dart';
 import 'util.dart';
 import 'theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  var providers = [
+    ChangeNotifierProvider(create: (_) => RestaurantListProvider()),
+    ChangeNotifierProvider(create: (_) => RestaurantDetailProvider()),
+  ];
+
+  runApp(MultiProvider(
+    providers: providers,
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
